@@ -26,6 +26,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // quakedef.h -- primary header for client
 
+#include <gl4esinit.h>
+
 #define	QUAKE_GAME		// as opposed to utilities
 
 #define	VERSION			1.09
@@ -226,14 +228,17 @@ typedef struct
 #if defined(SDL_FRAMEWORK) || defined(NO_SDL_CONFIG)
 #if defined(USE_SDL2)
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
+#include <GL/gl.h>
+//#include <SDL2/SDL_opengl.h>
 #else
 #include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
+#include <GL/gl.h>
+//#include <SDL/SDL_opengl.h>
 #endif
 #else
 #include "SDL.h"
-#include "SDL_opengl.h"
+#include <GL/gl.h>
+//#include "SDL_opengl.h"
 #endif
 #ifndef APIENTRY
 #define	APIENTRY

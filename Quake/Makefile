@@ -8,18 +8,18 @@
 DO_USERDIRS=0
 
 ### Enable/Disable SDL2
-USE_SDL2=0
+USE_SDL2=1
 
 ### Enable/Disable codecs for streaming music support
-USE_CODEC_WAVE=1
+USE_CODEC_WAVE=0
 USE_CODEC_FLAC=0
-USE_CODEC_MP3=1
-USE_CODEC_VORBIS=1
+USE_CODEC_MP3=0
+USE_CODEC_VORBIS=0
 USE_CODEC_OPUS=0
 # either xmp or mikmod (or modplug)
 USE_CODEC_MIKMOD=0
 USE_CODEC_XMP=0
-USE_CODEC_MODPLUG=0
+USE_CODEC_MODPLUG=1
 USE_CODEC_UMX=0
 
 # which library to use for mp3 decoding: mad or mpg123
@@ -52,7 +52,7 @@ PKG_CONFIG ?= pkg-config
 CPUFLAGS=
 LDFLAGS?=
 DFLAGS ?=
-CFLAGS ?= -Wall -Wno-trigraphs -MMD
+CFLAGS ?= -Wall -Wno-trigraphs -MMD -I include/
 CFLAGS += $(call check_gcc,-std=gnu11,)
 CFLAGS += $(CPUFLAGS)
 ifneq ($(DEBUG),0)
@@ -61,7 +61,7 @@ CFLAGS += -g
 do_strip=
 else
 DFLAGS += -DNDEBUG
-CFLAGS += -O2
+CFLAGS += -fno-rtti -fno-exceptions -flto=thin -O3
 #CFLAGS += -fno-asynchronous-unwind-tables
 CFLAGS += $(call check_gcc,-fweb,)
 CFLAGS += $(call check_gcc,-frename-registers,)

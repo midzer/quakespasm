@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
+#include <gl4esinit.h>
+
 #include "quakedef.h"
 #if defined(SDL_FRAMEWORK) || defined(NO_SDL_CONFIG)
 #if defined(USE_SDL2)
@@ -68,6 +70,7 @@ static quakeparms_t	parms;
 
 int main(int argc, char *argv[])
 {
+	initialize_gl4es();
 	int		t;
 	double		time, oldtime, newtime;
 
